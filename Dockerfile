@@ -9,11 +9,11 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean all
 
-# Add node-red user so we aren't running as root.
+# Add aw user so we aren't running as root.
 RUN adduser --home /activitywatch aw \
     && mkdir -p /.config \
-    && chown -R node-red:node-red /.config \
-    && chown -R node-red:node-red /activitywatch
+    && chown -R aw:aw /.config \
+    && chown -R aw:aw /activitywatch
 
 USER aw
 WORKDIR /activitywatch
