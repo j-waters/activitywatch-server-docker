@@ -1,17 +1,17 @@
 FROM ubuntu:bionic
 
-ENV UID=8426
-ENV GID=8426
 ENV VERSION=0.7.1
 
 # Requirements
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y dumb-init curl unzip \
-    && groupadd -g ${GID} aw \
-    && useradd -g aw -u ${UID} -d /activitywatch -m aw \
+    && apt-get install -y dumb-init curl unzip \    
     && apt-get autoremove -y \
     && apt-get clean all
+
+# Add node-red user so we aren't running as root.
+RUN && groupadd aw \
+    && useradd -g aw -d /activitywatch -m aw
 
 USER aw:aw
 WORKDIR /activitywatch
