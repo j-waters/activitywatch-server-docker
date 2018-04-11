@@ -10,8 +10,10 @@ RUN apt-get update \
     && apt-get clean all
 
 # Add node-red user so we aren't running as root.
-RUN && groupadd aw \
-    && useradd -g aw -d /activitywatch -m aw
+RUN adduser -h /activitywatch -D -H aw \
+    && mkdir -p /.config \
+    && chown -R node-red:node-red /.config \
+    && chown -R node-red:node-red /activitywatch
 
 USER aw
 WORKDIR /activitywatch
