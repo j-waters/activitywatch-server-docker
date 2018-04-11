@@ -13,7 +13,7 @@ RUN apt-get update \
 RUN && groupadd aw \
     && useradd -g aw -d /activitywatch -m aw
 
-USER aw:aw
+USER aw
 WORKDIR /activitywatch
 
 # Installation
