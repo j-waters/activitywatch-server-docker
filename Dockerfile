@@ -9,13 +9,14 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean all
 
-# Add aw user so we aren't running as root.
-RUN adduser --home /activitywatch aw \
-    && mkdir -p /.config \    
-    && chown -R aw:aw /.config \
-    && chown -R aw:aw /activitywatch
-
 USER root
+
+# Add aw user so we aren't running as root.
+#RUN adduser --home /activitywatch aw \
+#    && mkdir -p /.config \    
+#    && chown -R aw:aw /.config \
+#    && chown -R aw:aw /activitywatch
+
 WORKDIR /activitywatch
 
 # Installation
