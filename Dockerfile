@@ -15,7 +15,7 @@ ADD aw-server.ini /activitywatch/.config/activitywatch/aw-server/aw-server.ini
 RUN useradd --home-dir /activitywatch --shell /bin/bash aw
 
 # Installation
-RUN git clone --recursive https://github.com/ActivityWatch/activitywatch.git /activitywatch \
+RUN git clone --recursive https://github.com/ActivityWatch/activitywatch.git /activitywatch/src \
     && cd /activitywatch \
     && git submodule update --init --recursive \
     && make build
