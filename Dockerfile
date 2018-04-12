@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM debian:stretch
 
 ENV VERSION=0.7.1
 
@@ -8,8 +8,6 @@ RUN apt-get update \
     && apt-get install -y dumb-init curl unzip \    
     && apt-get autoremove -y \
     && apt-get clean all
-
-USER root
 
 # Add aw user so we aren't running as root.
 #RUN adduser --home /activitywatch aw \
