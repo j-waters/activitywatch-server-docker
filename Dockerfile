@@ -11,7 +11,7 @@ RUN apt-get update \
 
 # Add aw user so we aren't running as root.
 RUN adduser --home /activitywatch aw \
-    && mkdir -p /.config \
+    && mkdir -p /.config \    
     && chown -R aw:aw /.config \
     && chown -R aw:aw /activitywatch
 
