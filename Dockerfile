@@ -9,14 +9,13 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean all
 
+WORKDIR /activitywatch
 # Add aw user so we aren't running as root.
-RUN useradd --home-dir /activitywatch --no-create-home  --shell /bin/bash aw \
-    && chown -R aw:aw /.config \
+RUN useradd --home-dir /activitywatch --shell /bin/bash aw \
     && chown -R aw:aw /activitywatch
 
 USER aw
-
-WORKDIR /activitywatch
+ADD aw-server.ini /activitywatch/.config/activitywatch/aw-server/aw-server.ini
 
 # Installation
 RUN curl -L -o /tmp/activitywatch.zip https://github.com/ActivityWatch/activitywatch/releases/download/v${VERSION}/activitywatch-v${VERSION}-linux-$(uname -m).zip \
