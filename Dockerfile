@@ -9,6 +9,8 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean all
 
+RUN mkdir -p /.config
+
 # Add aw user so we aren't running as root.
 #RUN adduser --home /activitywatch aw \
 #    && mkdir -p /.config \    
