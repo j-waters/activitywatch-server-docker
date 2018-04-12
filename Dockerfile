@@ -13,16 +13,17 @@ WORKDIR /activitywatch
 ADD aw-server.ini /activitywatch/.config/activitywatch/aw-server/aw-server.ini
 # Add aw user so we aren't running as root.
 RUN useradd --home-dir /activitywatch --shell /bin/bash aw
-RUN chown -R aw:aw /activitywatch
-USER aw
 
 # Installation
-RUN curl -L -o /tmp/activitywatch.zip https://github.com/ActivityWatch/activitywatch/releases/download/v${VERSION}/activitywatch-v${VERSION}-linux-$(uname -m).zip \
-    && unzip /tmp/activitywatch.zip -d / \
-    && chmod -x /activitywatch/*.so* \
-    && rm /tmp/activitywatch.zip
+RUN git clone --recursive https://github.com/ActivityWatch/activitywatch.git /activitywatch \
+    && cd /activitywatch \
+    && git submodule update --init --recursive \
+    && make build
+
+RUN chown -R aw:aw /activitywatch    
+USER aw
 
 ENTRYPOINT ["/usr/bin/dumb-init","--"]
-CMD ["/activitywatch/aw-server"]
+CMD ["aw-server"]
 
-EXPOSE 80
+EXPOSE 6500
