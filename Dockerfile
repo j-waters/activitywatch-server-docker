@@ -5,7 +5,7 @@ ENV VERSION=0.7.1
 # Requirements
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y dumb-init curl unzip \    
+    && apt-get install -y dumb-init curl unzip git \    
     && apt-get autoremove -y \
     && apt-get clean all
 
