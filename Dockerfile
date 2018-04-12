@@ -15,7 +15,7 @@ RUN adduser --home /activitywatch aw \
     && chown -R aw:aw /.config \
     && chown -R aw:aw /activitywatch
 
-#USER aw
+USER root
 WORKDIR /activitywatch
 
 # Installation
