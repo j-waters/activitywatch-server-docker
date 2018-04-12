@@ -11,9 +11,8 @@ RUN apt-get update \
 
 WORKDIR /activitywatch
 # Add aw user so we aren't running as root.
-RUN useradd --home-dir /activitywatch --shell /bin/bash aw \
-    && chown -R aw:aw /activitywatch
-
+RUN useradd --home-dir /activitywatch --shell /bin/bash aw
+RUN chown -R aw:aw /activitywatch
 USER aw
 ADD aw-server.ini /activitywatch/.config/activitywatch/aw-server/aw-server.ini
 
