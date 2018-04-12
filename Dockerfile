@@ -16,7 +16,7 @@ RUN useradd --home-dir /activitywatch --shell /bin/bash aw
 
 # Installation
 RUN git clone --recursive https://github.com/ActivityWatch/activitywatch.git /activitywatch/src \
-    && cd /activitywatch \
+    && cd /activitywatch/src \
     && git submodule update --init --recursive \
     && make build
 
