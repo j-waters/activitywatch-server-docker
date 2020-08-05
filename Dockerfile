@@ -5,12 +5,12 @@ ENV VERSION=0.9.2
 # Requirements
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y dumb-init curl unzip \    
+    && apt-get install -y dumb-init curl unzip \
     && apt-get autoremove -y \
     && apt-get clean all
 
 WORKDIR /activitywatch
-ADD aw-server.ini /activitywatch/.config/activitywatch/aw-server/aw-server.ini
+ADD config.toml /activitywatch/.config/activitywatch/aw-server/aw-server.ini
 # Add aw user so we aren't running as root.
 RUN useradd --home-dir /activitywatch --shell /bin/bash aw
 RUN chown -R aw:aw /activitywatch
@@ -22,7 +22,7 @@ RUN curl -L -o /tmp/activitywatch.zip https://github.com/ActivityWatch/activityw
     && chmod -x /activitywatch/*.so* \
     && rm /tmp/activitywatch.zip
 
-# ENTRYPOINT ["/usr/bin/dumb-init","--"]
-# CMD ["/activitywatch/aw-server"]
+ENTRYPOINT ["/usr/bin/dumb-init","--"]
+CMD ["/activitywatch/aw-server-rust/aw-server-rust"]
 
-EXPOSE 80
+EXPOSE 5600
