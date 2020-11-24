@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-ENV VERSION=0.9.2
+ENV VERSION=0.10.0
 
 # Requirements
 RUN apt-get update \
